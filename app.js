@@ -6,6 +6,7 @@ class Die {
     constructor() {
         this.div = $('<div></div>');
         this.value = random();
+        this.me = dieCount; // Unique identifier outside of the element id --
     }
 
     generateDie() {
@@ -26,14 +27,19 @@ class Die {
     roll() {
         this.value = random();
         this.div.text(this.value);
+        $('#sum-result').text('');
     }
 
-    remove(x) {
-        delete diceSet[this.div.attr('id')];
+    remove() {
+        delete diceSet[this.div.attr('id')]; // Empties diceSet array location --
         $('#' + this.div.attr('id')).remove();
-        console.log(diceSet);
-        
+        diceSet = diceSet.filter(function (x) {return x != null;}); // Removes empty array locations --
+        for (let index = 0; index < diceSet.length; index++) {
+            diceSet[index].id = index; // Renames id of the array object --
+            $('.die')[index].id = index; // Renames all of the element ids in the HTML --
+        }
         dieCount--;
+        $('#sum-result').text('');
     }
 }
 
@@ -43,7 +49,9 @@ $generate.click(function () {
         // Puts new Die object in the diceSet array and calls generateDie() --
         diceSet[dieCount] = new Die;
         diceSet[dieCount].generateDie();
+        $('#sum-result').text('');
     }
+    
 });
 
 function random() {
@@ -53,17 +61,17 @@ function random() {
 let $sum = $('#sum-dice'); // Sum Dice <button> --
 $sum.click(function () {
     let addItUp = 0;
-    for (let index = 0; index < diceSet.length; index++) { // Should be forEach --
+    for (let index = 0; index < diceSet.length; index++) {
         let x = diceSet[index].value;
         x = parseInt(x); // Converts string values to numbers --
         addItUp = addItUp + x;
     }
-    console.log(addItUp);
+    $('#sum-result').text(`The sum of all dice is ${addItUp}.`)
 });
 
 let $roll = $('#roll-dice'); // Roll Dice <button) --
 $roll.click(function () {
-    for (let index = 0; index < diceSet.length; index++) { // Should be forEach --
+    for (let index = 0; index < diceSet.length; index++) { 
         diceSet[index].roll();
     }
 });
