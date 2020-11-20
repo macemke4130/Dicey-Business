@@ -25,7 +25,8 @@
 }
 
 #table {
-    height: 100vh;
+    position: relative;
+    height: 90vh;
 }
 
 #sum-result {
