@@ -12,9 +12,15 @@
 
     -webkit-transition-duration: 200ms;
     -webkit-transition-timing-function: ease;
+    -moz-animation-duration: 200ms;
+    -moz-animation-timing-function: ease;
 }
 
 .die:hover{
-    font-size: 10rem;
-    text-shadow: 0 0 5px black;
+    font-size: 15rem;
+    text-shadow: 0 0 15px black;
+}
+
+#table {
+    height: 100vh;
 }
