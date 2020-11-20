@@ -23,11 +23,7 @@ $generate.click(function () {
         diceSet[dieCount].attr('value', random());
         diceSet[dieCount].text(diceSet[dieCount].attr('value'));
         diceSet[dieCount].addClass('die d-flex align-items-center justify-content-center m-2');
-        if (dieCount == 0) {
-            $('#table').append(diceSet[dieCount]);
-        } else {
-            $(diceSet[(dieCount - 1)]).after(diceSet[dieCount]);
-        }
+        $('#table').append(diceSet[dieCount]);
         console.log(diceSet[dieCount]);
         dieCount++;
     }
