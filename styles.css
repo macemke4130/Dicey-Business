@@ -1,0 +1,8 @@
+.die{
+    font-family: monospace, sans-serif;
+    font-size: 4rem;
+    height: 100px;
+    width: 100px;
+    border: 1px solid black;
+    border-radius: 5%;
+}
